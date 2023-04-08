@@ -3,8 +3,10 @@ import { SignInButton } from "@clerk/nextjs";
 export const SignIn = () => {
   return (
     <div>
-      <h1 className="text-4xl font-bold">👋 Welcome to Remind me!</h1>
-      <p className="text-lg">
+      <h1 className="text-4xl font-bold dark:text-slate-100">
+        👋 Welcome to Remind me!
+      </h1>
+      <p className="text-lg dark:text-slate-100">
         Please sign in to start keeping track of all your school tasks!
       </p>
       <SignInButton>
