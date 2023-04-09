@@ -1,5 +1,4 @@
 import { type NextPage } from "next";
-import Link from "next/link";
 import { PageLayout } from "~/components/layout";
 import { SignedIn, SignedOut, useUser } from "@clerk/nextjs";
 import { SignIn } from "~/components/signin";
