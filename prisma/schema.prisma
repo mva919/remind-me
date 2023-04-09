@@ -11,8 +11,21 @@ datasource db {
     relationMode = "prisma"
 }
 
-model Class {
+model Task {
     id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    name      String   @db.VarChar(200)
+    completed Boolean  @default(false)
+    dueDate   DateTime
+    notes     String?
+    type      String
+    class     Class    @relation(fields: [classId], references: [id])
+    classId   String   @unique
+
+    @@index([classId], name: "classId")
+}
+
+model Class {
+    id    String @id @default(cuid())
+    name  String
+    tasks Task[]
 }
