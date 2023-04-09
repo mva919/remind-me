@@ -18,13 +18,13 @@ model Task {
     dueDate   DateTime
     notes     String?
     type      String
-    class     Class    @relation(fields: [classId], references: [id])
-    classId   String   @unique
+    course    Course   @relation(fields: [courseId], references: [id])
+    courseId  String   @unique
 
-    @@index([classId], name: "classId")
+    @@index([courseId], name: "courseId")
 }
 
-model Class {
+model Course {
     id    String @id @default(cuid())
     name  String
     tasks Task[]

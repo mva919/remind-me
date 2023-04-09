@@ -5,11 +5,12 @@ import { SignIn } from "~/components/signin";
 import Spinner from "~/components/spinner";
 import Navbar from "~/components/navbar";
 
-// import { api } from "~/utils/api";
+import { api } from "~/utils/api";
 
 const Home: NextPage = () => {
-  // const hello = api.example.hello.useQuery({ text: "from tRPC" });
-  const { isLoaded: userLoaded, isSignedIn } = useUser();
+  const { isLoaded: userLoaded } = useUser();
+  const { data } = api.example.getAll.useQuery();
+  console.log(data);
 
   if (!userLoaded)
     return (
