@@ -6,7 +6,7 @@ const ThemeToggle = () => {
 
   return (
     <button
-      className="rounded p-2  hover:bg-slate-200 active:border active:border-black dark:text-slate-100 dark:hover:bg-slate-800 dark:active:border-slate-100"
+      className="rounded p-2 hover:bg-slate-200 active:ring-2 active:ring-black dark:text-slate-100 dark:hover:bg-slate-800 dark:active:ring-slate-100"
       onClick={() => (theme === "dark" ? setTheme("light") : setTheme("dark"))}
     >
       <Sun className="h-5 w-5 " />

@@ -2,8 +2,8 @@ import type { PropsWithChildren } from "react";
 
 export const PageLayout = (props: PropsWithChildren) => {
   return (
-    <main className="flex h-screen w-screen bg-slate-100 dark:bg-slate-900">
-      <div className="mx-auto h-full w-full max-w-screen-2xl">
+    <main className="h-screen min-h-screen w-screen bg-slate-100 dark:bg-slate-900">
+      <div className="relative mx-auto flex h-full w-full max-w-screen-2xl flex-col">
         {props.children}
       </div>
     </main>

@@ -5,12 +5,11 @@ import { SignIn } from "~/components/signin";
 import Spinner from "~/components/spinner";
 import Navbar from "~/components/navbar";
 
-import { api } from "~/utils/api";
+import { CourseList } from "~/components/courselist";
+import { Footer } from "~/components/footer";
 
 const Home: NextPage = () => {
   const { isLoaded: userLoaded } = useUser();
-  const { data } = api.example.getAll.useQuery();
-  console.log(data);
 
   if (!userLoaded)
     return (
@@ -25,6 +24,10 @@ const Home: NextPage = () => {
     <PageLayout>
       <SignedIn>
         <Navbar />
+        <section className="flex flex-auto">
+          <CourseList />
+        </section>
+        <Footer />
       </SignedIn>
 
       <SignedOut>

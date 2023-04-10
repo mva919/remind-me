@@ -25,7 +25,10 @@ model Task {
 }
 
 model Course {
-    id    String @id @default(cuid())
-    name  String
-    tasks Task[]
+    id     String @id @default(cuid())
+    name   String @db.VarChar(200)
+    tasks  Task[]
+    userId String
+
+    @@index([userId])
 }
