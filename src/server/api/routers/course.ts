@@ -31,4 +31,18 @@ export const courseRouter = createTRPCRouter({
 
       return course;
     }),
+  delete: protectedProcedure
+    .input(z.string())
+    .mutation(async ({ ctx, input }) => {
+      const userId = ctx.userId;
+      console.log("userId", userId);
+
+      const course = await ctx.prisma.course.delete({
+        where: {
+          id: input,
+        },
+      });
+
+      return course;
+    }),
 });
