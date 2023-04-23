@@ -66,7 +66,7 @@ export const CourseList = () => {
           <Spinner size={64} />
         </div>
       ) : (
-        <div className="mb-1 flex grow basis-0 flex-col gap-y-2 overflow-y-scroll">
+        <div className="mb-1 flex grow basis-0 flex-col gap-y-2 overflow-y-scroll scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-slate-700">
           {data?.map((course) => (
             <div key={course.id} className="group flex items-center gap-1">
               <button
