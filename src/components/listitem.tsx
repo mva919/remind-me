@@ -9,7 +9,7 @@ type ListItemProps = {
   onDelete: (id: string) => void;
 };
 
-export const ListItem = (props: ListItemProps) => {
+const ListItem = (props: ListItemProps) => {
   return (
     <button
       className={`flex w-full items-center justify-between gap-4 overflow-hidden rounded p-2 transition-all ${
@@ -26,3 +26,5 @@ export const ListItem = (props: ListItemProps) => {
     </button>
   );
 };
+
+export default ListItem;

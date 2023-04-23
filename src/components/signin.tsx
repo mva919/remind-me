@@ -1,6 +1,6 @@
 import { SignInButton } from "@clerk/nextjs";
 
-export const SignIn = () => {
+const SignIn = () => {
   return (
     <div className="flex flex-col items-center justify-center gap-6 px-8">
       <div className="flex flex-col items-start">
@@ -20,3 +20,5 @@ export const SignIn = () => {
     </div>
   );
 };
+
+export default SignIn;

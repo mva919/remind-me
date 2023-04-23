@@ -1,11 +1,11 @@
 import { api } from "~/utils/api";
 import Spinner from "./spinner";
-import { ListItem } from "./listitem";
+import ListItem from "./listitem";
 import { useEffect, useRef, useState } from "react";
 import autoAnimate from "@formkit/auto-animate";
 import { X } from "lucide-react";
 
-export const CourseList = () => {
+const CourseList = () => {
   const { data, isLoading: coursesLoading } = api.course.getAll.useQuery();
   const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
   const [newCourseName, setNewCourseName] = useState("");
@@ -107,3 +107,5 @@ export const CourseList = () => {
     </div>
   );
 };
+
+export default CourseList;
