@@ -1,6 +1,7 @@
 import { useClerk } from "@clerk/nextjs";
 import ThemeToggle from "./themetoggle";
 import { LogOut } from "lucide-react";
+import Button from "./button";
 
 const Navbar = () => {
   const { signOut } = useClerk();
@@ -10,12 +11,9 @@ const Navbar = () => {
       <h1 className="font-semibold dark:text-slate-100">Remind me.</h1>
       <div className="flex items-center justify-between gap-6">
         <ThemeToggle />
-        <button
-          className="rounded bg-red-600 p-2 text-white transition-all duration-100 hover:scale-95 hover:bg-red-700 active:ring active:ring-black dark:active:ring-slate-100"
-          onClick={() => void signOut()}
-        >
+        <Button variant="primary" onClick={() => void signOut()}>
           <LogOut height={18} width={18} />
-        </button>
+        </Button>
       </div>
     </nav>
   );
