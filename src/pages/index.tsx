@@ -6,8 +6,6 @@ import Spinner from "~/components/spinner";
 import Navbar from "~/components/navbar";
 import CourseList from "~/components/courselist";
 import Footer from "~/components/footer";
-import TaskList from "~/components/tasklist";
-import FilterTab from "~/components/filtertab";
 
 const Home: NextPage = () => {
   const { isLoaded: userLoaded } = useUser();
@@ -27,8 +25,6 @@ const Home: NextPage = () => {
         <Navbar />
         <section className="flex flex-auto">
           <CourseList />
-          <TaskList />
-          <FilterTab />
         </section>
         <Footer />
       </SignedIn>
