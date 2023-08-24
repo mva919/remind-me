@@ -3,9 +3,10 @@ import Spinner from "./spinner";
 import ListItem from "./listitem";
 import { useEffect, useRef, useState } from "react";
 import autoAnimate from "@formkit/auto-animate";
-import { Pencil, Trash2 } from "lucide-react";
+import { ChevronFirst, ChevronLast, Pencil, Trash2 } from "lucide-react";
 import Button from "./button";
 import { toast } from "react-hot-toast";
+import useDeviceType from "~/hooks/useDeviceType";
 
 const CourseList = () => {
   const { data, isLoading: coursesLoading } = api.course.getAll.useQuery();
@@ -15,6 +16,8 @@ const CourseList = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
   const parent = useRef<HTMLDivElement>(null);
+  const isSmallScreen = useDeviceType();
+  const [isExpanded, setIsExpanded] = useState(!isSmallScreen);
 
   const ctx = api.useContext();
 
@@ -81,78 +84,101 @@ const CourseList = () => {
     setIsEditing(false);
   };
 
+  const handleCollapse = () => {
+    setIsExpanded(!isExpanded);
+    setIsEditing(false);
+    setNewCourseName("");
+  };
+
   return (
     <div
       ref={parent}
-      className="flex h-full w-1/6 flex-col border-r border-r-slate-300 p-1 dark:border-r-slate-600"
+      className={`${
+        isExpanded ? "w-fit" : "w-80"
+      } flex h-full flex-col border-r border-r-slate-300 p-1 dark:border-r-slate-600`}
     >
-      <div>
-        <h1 className="pb-2 text-center text-xl font-bold">Courses</h1>
-        <Button
-          onClick={() => {
-            setIsEditing((prev) => !prev);
-          }}
-          className={`mb-3 flex w-full items-center gap-2 ${
-            isEditing
-              ? "bg-red-600 text-white hover:bg-red-600 dark:hover:bg-red-600"
-              : ""
-          }`}
-        >
-          <Pencil size={16} />
-          <p>Edit Course List</p>
+      {isExpanded ? (
+        <Button onClick={() => setIsExpanded(!isExpanded)}>
+          <ChevronLast size={24} />
         </Button>
-      </div>
-
-      {coursesLoading || isCreating || isDeleting ? (
-        <div className="flex grow items-center justify-center">
-          <Spinner size={64} />
-        </div>
       ) : (
-        <div className="mb-1 flex grow basis-0 flex-col gap-y-2 overflow-y-scroll p-1 scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-slate-700">
-          {data?.map((course) => (
-            <ListItem
-              key={`course-${course.id}`}
-              {...course}
-              selected={selectedCourses.includes(course.id)}
-              onClick={handleListItemClick}
-            />
-          ))}
-        </div>
-      )}
+        <>
+          <div>
+            <div className="flex items-center justify-between">
+              <h1 className="pb-2 pl-3 text-center text-xl font-bold">
+                Courses
+              </h1>
+              <Button onClick={handleCollapse}>
+                <ChevronFirst size={24} />
+              </Button>
+            </div>
+            <Button
+              onClick={() => {
+                setIsEditing((prev) => !prev);
+              }}
+              className={`mb-3 flex w-full items-center gap-2 ${
+                isEditing
+                  ? "bg-red-600 text-white hover:bg-red-600 dark:hover:bg-red-600"
+                  : ""
+              }`}
+            >
+              <Pencil size={16} />
+              <p>Edit Course List</p>
+            </Button>
+          </div>
 
-      <div>
-        {isEditing && (
-          <Button
-            variant="primary"
-            className="mb-1 flex w-full items-center justify-center gap-2"
-            isDisabled={selectedCourses.length === 0}
-            onClick={handleCoursesDelete}
-          >
-            <Trash2 size={16} />
-            <p>{`Delete ${
-              selectedCourses.length !== 0 ? selectedCourses.length : ""
-            }`}</p>
-          </Button>
-        )}
-        <input
-          type="text"
-          value={newCourseName}
-          placeholder="Add course..."
-          className="w-full flex-none rounded bg-slate-200 p-2 outline-none dark:bg-slate-800"
-          onChange={(e) => setNewCourseName(e.target.value)}
-          onKeyDown={(e) => handleAddCourseKeyDown(e)}
-          disabled={coursesLoading || isAddingCourse}
-        />
-        {newCourseName.length > 0 && (
-          <Button
-            variant="primary"
-            className="mt-1 w-full"
-            onClick={handleAddCourseBtnClick}
-          >
-            Add Course
-          </Button>
-        )}
-      </div>
+          {coursesLoading || isCreating || isDeleting ? (
+            <div className="flex grow items-center justify-center">
+              <Spinner size={64} />
+            </div>
+          ) : (
+            <div className="mb-1 flex grow basis-0 flex-col gap-y-2 overflow-y-scroll p-1 scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-slate-700">
+              {data?.map((course) => (
+                <ListItem
+                  key={`course-${course.id}`}
+                  {...course}
+                  selected={selectedCourses.includes(course.id)}
+                  onClick={handleListItemClick}
+                />
+              ))}
+            </div>
+          )}
+
+          <div>
+            {isEditing && (
+              <Button
+                variant="primary"
+                className="mb-1 flex w-full items-center justify-center gap-2"
+                isDisabled={selectedCourses.length === 0}
+                onClick={handleCoursesDelete}
+              >
+                <Trash2 size={16} />
+                <p>{`Delete ${
+                  selectedCourses.length !== 0 ? selectedCourses.length : ""
+                }`}</p>
+              </Button>
+            )}
+            <input
+              type="text"
+              value={newCourseName}
+              placeholder="Add course..."
+              className="w-full flex-none rounded bg-slate-200 p-2 outline-none dark:bg-slate-800"
+              onChange={(e) => setNewCourseName(e.target.value)}
+              onKeyDown={(e) => handleAddCourseKeyDown(e)}
+              disabled={coursesLoading || isAddingCourse}
+            />
+            {newCourseName.length > 0 && (
+              <Button
+                variant="primary"
+                className="mt-1 w-full"
+                onClick={handleAddCourseBtnClick}
+              >
+                Add Course
+              </Button>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 };
