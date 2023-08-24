@@ -1,14 +1,14 @@
 import { cva, type VariantProps } from "class-variance-authority";
-import React from "react";
+import React, { forwardRef, type HTMLAttributes } from "react";
 import { cn } from "~/utils/cn";
 
 const buttonVariants = cva("rounded p-2 active:ring-2 transition-all", {
   variants: {
     variant: {
       default:
-        "active:ring-black hover:bg-slate-200 dark:text-slate-100 dark:hover:bg-slate-800 dark:active:ring-slate-100",
+        "active:ring-black hover:bg-slate-200 dark:text-slate-100 dark:hover:bg-slate-800 dark:active:ring-slate-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:ring-0 disabled:hover:scale-100 disabled:hover:text-white disabled:hover:dark:bg-slate-900 disabled:hover:bg-slate-200 disabled:hover:bg-slate-50 disabled:hover:text-black disabled:hover:dark:text-slate-100",
       primary:
-        "bg-red-600 p-2 text-white duration-100 hover:scale-95 hover:bg-red-700 active:ring-black dark:active:ring-slate-100",
+        "bg-red-600 p-2 text-white duration-100 hover:scale-95 hover:bg-red-700 active:ring-black dark:active:ring-slate-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:ring-0 disabled:hover:scale-100 disabled:hover:bg-red-600 disabled:hover:text-white disabled:hover:bg-red-600",
     },
   },
   defaultVariants: {
@@ -17,18 +17,19 @@ const buttonVariants = cva("rounded p-2 active:ring-2 transition-all", {
 });
 
 export interface IButtonProps
-  extends React.HTMLAttributes<HTMLButtonElement>,
+  extends HTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   isLoading?: boolean;
+  isDisabled?: boolean;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(
-  ({ className, children, variant, isLoading, ...props }, ref) => {
+const Button = forwardRef<HTMLButtonElement, IButtonProps>(
+  ({ className, children, variant, isLoading, isDisabled, ...props }, ref) => {
     return (
       <button
-        className={cn(buttonVariants({ variant, className }))}
+        className={cn(buttonVariants({ variant }), className)}
         ref={ref}
-        disabled={isLoading}
+        disabled={isLoading || isDisabled}
         {...props}
       >
         {children}
