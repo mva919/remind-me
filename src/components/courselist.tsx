@@ -7,6 +7,7 @@ import { ChevronFirst, ChevronLast, Pencil, Trash2 } from "lucide-react";
 import Button from "./button";
 import { toast } from "react-hot-toast";
 import useDeviceType from "~/hooks/useDeviceType";
+import TextInput from "./textinput";
 
 const CourseList = () => {
   const { data, isLoading: coursesLoading } = api.course.getAll.useQuery();
@@ -105,9 +106,7 @@ const CourseList = () => {
         <>
           <div>
             <div className="flex items-center justify-between">
-              <h1 className="pb-2 pl-3 text-center text-xl font-bold">
-                Courses
-              </h1>
+              <h1 className="pb-2 pl-3 text-xl font-bold">Courses</h1>
               <Button onClick={handleCollapse}>
                 <ChevronFirst size={24} />
               </Button>
@@ -158,12 +157,11 @@ const CourseList = () => {
                 }`}</p>
               </Button>
             )}
-            <input
-              type="text"
+            <TextInput
               value={newCourseName}
               placeholder="Add course..."
-              className="w-full flex-none rounded bg-slate-200 p-2 outline-none dark:bg-slate-800"
-              onChange={(e) => setNewCourseName(e.target.value)}
+              className="w-full"
+              onChange={(e) => setNewCourseName(e.currentTarget.value)}
               onKeyDown={(e) => handleAddCourseKeyDown(e)}
               disabled={coursesLoading || isAddingCourse}
             />
