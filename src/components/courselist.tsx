@@ -8,10 +8,12 @@ import Button from "./button";
 import { toast } from "react-hot-toast";
 import useDeviceType from "~/hooks/useDeviceType";
 import TextInput from "./textinput";
+import { useCoursesContext } from "~/context/courses-context";
+import { useGlobalContext } from "~/context/global-context";
 
 const CourseList = () => {
-  const { data, isLoading: coursesLoading } = api.course.getAll.useQuery();
-  const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
+  const { data: courses, isLoading: coursesLoading } =
+    api.course.getAll.useQuery();
   const [newCourseName, setNewCourseName] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -19,6 +21,9 @@ const CourseList = () => {
   const parent = useRef<HTMLDivElement>(null);
   const isSmallScreen = useDeviceType();
   const [isExpanded, setIsExpanded] = useState(!isSmallScreen);
+  const { courses: selectedCourses, setCourses: setSelectedCourses } =
+    useCoursesContext();
+  const { isCreatingTask } = useGlobalContext();
 
   const ctx = api.useContext();
 
@@ -41,11 +46,29 @@ const CourseList = () => {
   }, [parent]);
 
   const handleListItemClick = (id: string) => {
-    if (selectedCourses.includes(id)) {
-      setSelectedCourses((prev) => prev.filter((course) => course !== id));
-    } else {
-      setSelectedCourses((prev) => [...prev, id]);
+    if (!courses) return;
+
+    const selectedCoursesId = selectedCourses.map((course) => course.id);
+    if (selectedCoursesId.includes(id)) {
+      if (isCreatingTask && selectedCourses.length === 1) {
+        toast.error(
+          "Must have at least one course selected while creating a task.",
+          {
+            style: {
+              backgroundColor: "#b91c1c",
+              color: "#f8fafc",
+            },
+          }
+        );
+        return;
+      }
+      setSelectedCourses((prev) => prev.filter((course) => course.id !== id));
+      return;
     }
+
+    const newSelectedCourse = courses.find((course) => course.id === id);
+    if (!newSelectedCourse) return;
+    setSelectedCourses((prev) => [...prev, newSelectedCourse]);
   };
 
   const handleAddCourseKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -72,7 +95,7 @@ const CourseList = () => {
   const handleCoursesDelete = () => {
     setIsDeleting(true);
     selectedCourses.forEach((course) => {
-      deleteCourse(course);
+      deleteCourse(course.id);
     });
     setSelectedCourses([]);
     setIsDeleting(false);
@@ -132,11 +155,11 @@ const CourseList = () => {
             </div>
           ) : (
             <div className="mb-1 flex grow basis-0 flex-col gap-y-2 overflow-y-scroll p-1 scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-slate-700">
-              {data?.map((course) => (
+              {courses?.map((course) => (
                 <ListItem
                   key={`course-${course.id}`}
                   {...course}
-                  selected={selectedCourses.includes(course.id)}
+                  selected={selectedCourses.includes(course)}
                   onClick={handleListItemClick}
                 />
               ))}

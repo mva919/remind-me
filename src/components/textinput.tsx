@@ -17,12 +17,10 @@ const TextInput = forwardRef<HTMLInputElement, ITextInputProps>(
   ({ className, id, disabled, value, ...props }, ref) => {
     return (
       <input
-        ref={ref}
         type="text"
         className={cn(className, textInputVariants())}
-        id={id}
         name={id}
-        {...{ disabled, value }}
+        {...{ ref, disabled, value, id }}
         {...props}
       />
     );

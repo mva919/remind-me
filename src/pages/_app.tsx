@@ -7,6 +7,8 @@ import "~/styles/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "react-hot-toast";
+import CoursesContextProvider from "~/context/courses-context";
+import GlobalContextProvider from "~/context/global-context";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
@@ -20,10 +22,14 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <ThemeProvider>
-        <Component {...pageProps} />
-        <Toaster />
-      </ThemeProvider>
+      <GlobalContextProvider>
+        <CoursesContextProvider>
+          <ThemeProvider>
+            <Component {...pageProps} />
+            <Toaster />
+          </ThemeProvider>
+        </CoursesContextProvider>
+      </GlobalContextProvider>
     </ClerkProvider>
   );
 };

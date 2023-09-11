@@ -17,7 +17,7 @@ const ListItem = ({ id, name, selected, onClick }: ListItemProps) => {
       }`}
       onClick={() => onClick(id)}
     >
-      <span className="w-full overflow-hidden truncate text-start text-lg font-semibold dark:text-slate-100">
+      <span className="w-full overflow-hidden truncate text-start text-lg font-medium dark:text-slate-100">
         {name}
       </span>
       {selected && <Check className="block h-5 transition-all" />}
