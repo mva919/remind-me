@@ -1,7 +1,7 @@
 import { type AppType } from "next/app";
 import Head from "next/head";
 
-import { api } from "~/utils/api";
+import { api } from "~/lib/utils/api";
 
 import "~/styles/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";

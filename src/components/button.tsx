@@ -1,8 +1,8 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import React, { forwardRef, type HTMLAttributes } from "react";
-import { cn } from "~/utils/cn";
+import { cn } from "~/lib/utils/cn";
 
-const buttonVariants = cva(
+export const buttonVariants = cva(
   "rounded p-2 active:ring-2 transition-all focus:outline-none focus-visible:ring-2 active:ring-2 dark:ring-slate-50 ring-black",
   {
     variants: {
@@ -11,6 +11,8 @@ const buttonVariants = cva(
           "hover:bg-slate-200 dark:text-slate-100 dark:hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:ring-0 disabled:hover:scale-100 disabled:hover:text-white disabled:hover:dark:bg-slate-900 disabled:hover:bg-slate-200 disabled:hover:bg-slate-50 disabled:hover:text-black disabled:hover:dark:text-slate-100",
         primary:
           "bg-red-600 p-2 text-white duration-100 hover:scale-95 hover:bg-red-700 active:ring-black dark:active:ring-slate-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:ring-0 disabled:hover:scale-100 disabled:hover:bg-red-600 disabled:hover:text-white disabled:hover:bg-red-600",
+        secondary:
+          "bg-indigo-600 p-2 text-white duration-100 hover:bg-indigo-700 active:ring-black dark:active:ring-slate-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:ring-0 disabled:hover:scale-100 disabled:hover:bg-indigo-600 disabled:hover:text-white disabled:hover:bg-indigo-600",
       },
     },
     defaultVariants: {

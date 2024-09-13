@@ -4,7 +4,7 @@ CREATE TABLE "Task" (
     "name" VARCHAR(200) NOT NULL,
     "completed" BOOLEAN NOT NULL DEFAULT false,
     "dueDate" TIMESTAMP(3) NOT NULL,
-    "notes" TEXT,
+    "description" TEXT,
     "type" TEXT NOT NULL,
     "courseId" TEXT NOT NULL,
 

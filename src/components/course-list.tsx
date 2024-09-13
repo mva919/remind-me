@@ -1,13 +1,13 @@
-import { api } from "~/utils/api";
+import { api } from "~/lib/utils/api";
 import Spinner from "./spinner";
 import ListItem from "./listitem";
 import { useEffect, useRef, useState } from "react";
 import autoAnimate from "@formkit/auto-animate";
-import { ChevronFirst, ChevronLast, Pencil, Trash2 } from "lucide-react";
+import { ChevronFirst, ChevronLast, Pencil, Trash2, X } from "lucide-react";
 import Button from "./button";
 import { toast } from "react-hot-toast";
 import useDeviceType from "~/hooks/useDeviceType";
-import TextInput from "./textinput";
+import TextInput from "~/components/text-input";
 import { useCoursesContext } from "~/context/courses-context";
 import { useGlobalContext } from "~/context/global-context";
 
@@ -144,8 +144,17 @@ const CourseList = () => {
                   : ""
               }`}
             >
-              <Pencil size={16} />
-              <p>Edit Course List</p>
+              {isEditing ? (
+                <div className="flex flex-row items-center space-x-2">
+                  <X size={20} />
+                  <p>Cancel</p>
+                </div>
+              ) : (
+                <>
+                  <Pencil size={16} />
+                  <p>Edit Course List</p>
+                </>
+              )}
             </Button>
           </div>
 

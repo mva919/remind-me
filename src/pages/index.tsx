@@ -4,7 +4,7 @@ import { SignedIn, SignedOut, useUser } from "@clerk/nextjs";
 import SignIn from "~/components/signin";
 import Spinner from "~/components/spinner";
 import Navbar from "~/components/navbar";
-import CourseList from "~/components/courselist";
+import CourseList from "~/components/course-list";
 import Footer from "~/components/footer";
 
 const Home: NextPage = () => {

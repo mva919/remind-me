@@ -4,6 +4,8 @@ import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
 
 export const courseRouter = createTRPCRouter({
   getAll: protectedProcedure.query(({ ctx }) => {
+    console.log("ctx.userId", ctx.userId);
+    console.log("test");
     return ctx.prisma.course.findMany({
       where: {
         userId: {
@@ -20,7 +22,6 @@ export const courseRouter = createTRPCRouter({
     )
     .mutation(async ({ ctx, input }) => {
       const userId = ctx.userId;
-      console.log("userId", userId);
 
       const course = await ctx.prisma.course.create({
         data: {
