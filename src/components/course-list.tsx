@@ -1,10 +1,10 @@
 import { api } from "~/lib/utils/api";
-import Spinner from "./spinner";
-import ListItem from "./listitem";
+import Spinner from "~/components/spinner";
+import ListItem from "~/components/listitem";
 import { useEffect, useRef, useState } from "react";
 import autoAnimate from "@formkit/auto-animate";
 import { ChevronFirst, ChevronLast, Pencil, Trash2, X } from "lucide-react";
-import Button from "./button";
+import Button from "~/components/button";
 import { toast } from "react-hot-toast";
 import useDeviceType from "~/hooks/useDeviceType";
 import TextInput from "~/components/text-input";

@@ -2,7 +2,7 @@ import { useCoursesContext } from "~/context/courses-context";
 import Button from "./button";
 import Dropdown from "./dropdown";
 import TextArea from "./textarea";
-import TextInput from "./textinput";
+import TextInput from "~/components/text-input";
 import Select from "./select";
 import { TASK_TYPES } from "~/constants/task-types";
 

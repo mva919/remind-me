@@ -1,6 +1,6 @@
 import { cva } from "class-variance-authority";
 import { type HTMLAttributes, forwardRef } from "react";
-import { cn } from "~/utils/cn";
+import { cn } from "~/lib/utils/cn";
 
 const TextAreaVariants = cva(
   "rounded px-2 py-3 border-none transition-all focus:outline-none focus:ring-2 active:ring-2 bg-slate-200 dark:bg-slate-800 dark:ring-slate-50 ring-black"
