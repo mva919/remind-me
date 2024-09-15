@@ -1,13 +1,12 @@
 import { api } from "~/lib/utils/api";
 import Spinner from "~/components/spinner";
-import ListItem from "~/components/listitem";
+import ListItem from "~/components/list-item";
 import { useEffect, useRef, useState } from "react";
 import autoAnimate from "@formkit/auto-animate";
 import { ChevronFirst, ChevronLast, Pencil, Trash2, X } from "lucide-react";
 import Button from "~/components/button";
 import { toast } from "react-hot-toast";
 import useDeviceType from "~/hooks/useDeviceType";
-import TextInput from "~/components/text-input";
 import { useCoursesContext } from "~/context/courses-context";
 import { useGlobalContext } from "~/context/global-context";
 
@@ -189,14 +188,14 @@ const CourseList = () => {
                 }`}</p>
               </Button>
             )}
-            <TextInput
+            {/* <TextInput
               value={newCourseName}
               placeholder="Add course..."
               className="w-full"
               onChange={(e) => setNewCourseName(e.currentTarget.value)}
               onKeyDown={(e) => handleAddCourseKeyDown(e)}
               disabled={coursesLoading || isAddingCourse}
-            />
+            /> */}
             {newCourseName.length > 0 && (
               <Button
                 variant="primary"

@@ -1,6 +1,6 @@
 import { SignInButton } from "@clerk/nextjs";
 import Image from "next/image";
-import Button from "./button";
+import Button from "~/components/button";
 
 const SignIn = () => {
   return (

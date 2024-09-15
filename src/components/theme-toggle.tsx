@@ -1,6 +1,6 @@
 import { Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import Button from "./button";
+import Button from "~/components/button";
 
 const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();

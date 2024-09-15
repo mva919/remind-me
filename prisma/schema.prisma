@@ -19,7 +19,7 @@ model Task {
     description String?
     type        String
     course      Course   @relation(fields: [courseId], references: [id])
-    courseId    String   @unique
+    courseId    String
 
     @@index([courseId], name: "courseId")
 }

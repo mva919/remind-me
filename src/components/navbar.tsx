@@ -1,7 +1,7 @@
 import { useClerk } from "@clerk/nextjs";
-import ThemeToggle from "./themetoggle";
+import ThemeToggle from "~/components/theme-toggle";
 import { LogOut } from "lucide-react";
-import Button from "./button";
+import Button from "~/components/button";
 
 const Navbar = () => {
   const { signOut } = useClerk();

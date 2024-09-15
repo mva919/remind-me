@@ -5,15 +5,14 @@ import {
   useContext,
   useState,
 } from "react";
+import { z } from "zod";
+import { CourseSchema } from "~/lib/types";
 
 interface ICourseContextProviderProps {
   children: React.ReactNode;
 }
 
-export type TCourse = {
-  id: string;
-  name: string;
-};
+type TCourse = z.infer<typeof CourseSchema>;
 
 type TCoursesContext = {
   courses: TCourse[];

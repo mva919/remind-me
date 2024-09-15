@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import Button from "./button";
 import { ChevronsUpDown } from "lucide-react";
-import ListItem from "./listitem";
+import ListItem from "./list-item";
 import useOutsideClickDetecter from "~/hooks/useOutsideClickDetecter";
 
 interface IDropdownProps {

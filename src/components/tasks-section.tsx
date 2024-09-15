@@ -1,10 +1,10 @@
-import { useState } from "react";
-import Button from "./button";
-import TaskCreator from "./taskcreator";
+import Button from "~/components/button";
+import TaskCreator from "~/components/task-creator";
 import { useCoursesContext } from "~/context/courses-context";
 import { useGlobalContext } from "~/context/global-context";
+import TaskList from "~/components/task-list";
 
-const TaskList = () => {
+const TaskSection = () => {
   const { isCreatingTask, setIsCreatingTask } = useGlobalContext();
   const { courses } = useCoursesContext();
 
@@ -25,19 +25,11 @@ const TaskList = () => {
               Add Task
             </Button>
           </div>
-          <div className="grow">
-            {courses.length ? (
-              <div className="flex"></div>
-            ) : (
-              <div className="flex h-full items-center justify-center">
-                <p>No courses selected</p>
-              </div>
-            )}
-          </div>
+          <TaskList />
         </>
       )}
     </div>
   );
 };
 
-export default TaskList;
+export default TaskSection;
