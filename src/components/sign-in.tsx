@@ -1,6 +1,6 @@
 import { SignInButton } from "@clerk/nextjs";
 import Image from "next/image";
-import Button from "~/components/button";
+import { Button } from "~/components/ui/button";
 
 const SignIn = () => {
   return (
@@ -22,10 +22,7 @@ const SignIn = () => {
 
           <div className="mt-4">
             <SignInButton>
-              <Button
-                variant="primary"
-                className="px-16 py-2 text-lg font-semibold"
-              >
+              <Button className="px-16 py-2 text-lg font-semibold">
                 Sign in
               </Button>
             </SignInButton>

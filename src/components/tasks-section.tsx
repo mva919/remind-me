@@ -1,4 +1,4 @@
-import Button from "~/components/button";
+import { Button } from "~/components/ui/button";
 import TaskCreator from "~/components/task-creator";
 import { useCoursesContext } from "~/context/courses-context";
 import { useGlobalContext } from "~/context/global-context";
@@ -17,10 +17,9 @@ const TaskSection = () => {
           <div className="flex w-full items-center justify-between p-1">
             <h1 className="ml-2 text-xl font-bold">Tasks</h1>
             <Button
-              variant="primary"
               className="px-4"
               onClick={() => setIsCreatingTask(true)}
-              isDisabled={!courses.length}
+              disabled={!courses.length}
             >
               Add Task
             </Button>

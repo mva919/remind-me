@@ -187,7 +187,7 @@ const CourseList = () => {
               <Spinner size={64} />
             </div>
           ) : (
-            <div className="mb-1 flex grow basis-0 flex-col gap-y-2 overflow-y-scroll p-1 scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-slate-700">
+            <div className="mb-1 flex grow basis-0 flex-col gap-y-2 overflow-y-scroll scrollbar-thin scrollbar-thumb-slate-300 dark:scrollbar-thumb-slate-700">
               {courses?.map((course) => (
                 <ListItem
                   key={`course-${course.id}`}
