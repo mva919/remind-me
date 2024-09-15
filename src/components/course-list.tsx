@@ -4,11 +4,18 @@ import ListItem from "~/components/list-item";
 import { useEffect, useRef, useState } from "react";
 import autoAnimate from "@formkit/auto-animate";
 import { ChevronFirst, ChevronLast, Pencil, Trash2, X } from "lucide-react";
-import Button from "~/components/button";
+import { Button } from "~/components/ui/button";
 import { toast } from "react-hot-toast";
 import useDeviceType from "~/hooks/useDeviceType";
 import { useCoursesContext } from "~/context/courses-context";
 import { useGlobalContext } from "~/context/global-context";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "~/components/ui/tooltip";
+import { Input } from "./ui/input";
 
 const CourseList = () => {
   const { data: courses, isLoading: coursesLoading } =
@@ -117,31 +124,49 @@ const CourseList = () => {
     <div
       ref={parent}
       className={`${
-        isExpanded ? "w-fit" : "w-80"
+        isExpanded ? "w-80" : "px-1"
       } flex h-full flex-col border-r border-r-slate-300 p-1 dark:border-r-slate-600`}
     >
-      {isExpanded ? (
-        <Button onClick={() => setIsExpanded(!isExpanded)}>
-          <ChevronLast size={24} />
-        </Button>
+      {!isExpanded ? (
+        <TooltipProvider delayDuration={100}>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="ghost"
+                onClick={() => setIsExpanded(!isExpanded)}
+              >
+                <ChevronLast size={24} />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent side="right">
+              <p>Expand course list</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       ) : (
         <>
           <div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between pb-2">
               <h1 className="pb-2 pl-3 text-xl font-bold">Courses</h1>
-              <Button onClick={handleCollapse}>
-                <ChevronFirst size={24} />
-              </Button>
+              <TooltipProvider delayDuration={100}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button variant="ghost" onClick={handleCollapse}>
+                      <ChevronFirst size={24} />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="right">
+                    <p>Collapse course list</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
             <Button
+              variant="secondary"
               onClick={() => {
                 setIsEditing((prev) => !prev);
               }}
-              className={`mb-3 flex w-full items-center gap-2 ${
-                isEditing
-                  ? "bg-red-600 text-white hover:bg-red-600 dark:hover:bg-red-600"
-                  : ""
-              }`}
+              className="mb-3 flex w-full items-center gap-2"
             >
               {isEditing ? (
                 <div className="flex flex-row items-center space-x-2">
@@ -177,9 +202,9 @@ const CourseList = () => {
           <div>
             {isEditing && (
               <Button
-                variant="primary"
+                variant="destructive"
                 className="mb-1 flex w-full items-center justify-center gap-2"
-                isDisabled={selectedCourses.length === 0}
+                disabled={selectedCourses.length === 0}
                 onClick={handleCoursesDelete}
               >
                 <Trash2 size={16} />
@@ -188,20 +213,17 @@ const CourseList = () => {
                 }`}</p>
               </Button>
             )}
-            {/* <TextInput
-              value={newCourseName}
-              placeholder="Add course..."
-              className="w-full"
+            <Input
+              type="text"
+              placeholder="Add course"
               onChange={(e) => setNewCourseName(e.currentTarget.value)}
               onKeyDown={(e) => handleAddCourseKeyDown(e)}
               disabled={coursesLoading || isAddingCourse}
-            /> */}
+              value={newCourseName}
+            />
+
             {newCourseName.length > 0 && (
-              <Button
-                variant="primary"
-                className="mt-1 w-full"
-                onClick={handleAddCourseBtnClick}
-              >
+              <Button className="mt-2 w-full" onClick={handleAddCourseBtnClick}>
                 Add Course
               </Button>
             )}
