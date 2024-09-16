@@ -27,7 +27,7 @@ const Home: NextPage = () => {
     <PageLayout>
       <SignedIn>
         <Navbar />
-        <section className="flex flex-auto overflow-scroll">
+        <section className="flex flex-auto">
           {!isSmallScreen && <CourseList />}
           <TaskSection />
           {/* <FilterTab /> */}

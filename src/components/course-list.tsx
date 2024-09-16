@@ -125,29 +125,31 @@ const CourseList = () => {
       ref={parent}
       className={`${
         isExpanded ? "w-80" : "px-1"
-      } flex h-full flex-col border-r border-r-slate-300 p-1 dark:border-r-slate-600`}
+      } flex h-full flex-col overflow-scroll border-r border-r-slate-300 p-1 dark:border-r-slate-600`}
     >
       {!isExpanded ? (
-        <TooltipProvider delayDuration={100}>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant="ghost"
-                onClick={() => setIsExpanded(!isExpanded)}
-              >
-                <ChevronLast size={24} />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent side="right">
-              <p>Expand course list</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        <div>
+          <TooltipProvider delayDuration={100}>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  onClick={() => setIsExpanded(!isExpanded)}
+                >
+                  <ChevronLast size={24} />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent side="right">
+                <p>Expand course list</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
       ) : (
         <>
           <div>
             <div className="flex items-center justify-between pb-2">
-              <h1 className="pb-2 pl-3 text-xl font-bold">Courses</h1>
+              <h1 className="pb-2 text-xl font-bold">Courses</h1>
               <TooltipProvider delayDuration={100}>
                 <Tooltip>
                   <TooltipTrigger asChild>
