@@ -149,7 +149,7 @@ const CourseList = () => {
         <>
           <div>
             <div className="flex items-center justify-between pb-2">
-              <h1 className="pb-2 text-xl font-bold">Courses</h1>
+              <h1 className="pb-2 text-xl font-bold sm:pl-2">Courses</h1>
               <TooltipProvider delayDuration={100}>
                 <Tooltip>
                   <TooltipTrigger asChild>

@@ -15,9 +15,9 @@ const TaskSection = () => {
       ) : (
         <>
           <div className="flex w-full items-center justify-between p-1">
-            <h1 className="ml-2 text-xl font-bold">Tasks</h1>
+            <h1 className="text-xl font-bold sm:ml-2">Tasks</h1>
             <Button
-              className="px-4"
+              className="px-4 sm:mr-3"
               onClick={() => setIsCreatingTask(true)}
               disabled={!courses.length}
             >
