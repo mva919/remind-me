@@ -4,7 +4,7 @@ const useDeviceType = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    const mediaQuery = window.matchMedia("(max-width: 640px)");
     const handleResize = (e: MediaQueryListEvent) => {
       setIsSmallScreen(e.matches);
     };

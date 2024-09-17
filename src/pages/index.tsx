@@ -4,11 +4,11 @@ import { SignedIn, SignedOut, useUser } from "@clerk/nextjs";
 import SignIn from "~/components/sign-in";
 import Spinner from "~/components/spinner";
 import Navbar from "~/components/navbar";
-import CourseList from "~/components/course-list";
 import Footer from "~/components/footer";
 import FilterTab from "~/components/filter-tab";
 import useDeviceType from "~/hooks/useDeviceType";
 import TaskSection from "~/components/tasks-section";
+import CourseSection from "~/components/course-section";
 
 const Home: NextPage = () => {
   const { isLoaded: userLoaded } = useUser();
@@ -28,7 +28,7 @@ const Home: NextPage = () => {
       <SignedIn>
         <Navbar />
         <section className="flex flex-auto">
-          {!isSmallScreen && <CourseList />}
+          {!isSmallScreen && <CourseSection />}
           <TaskSection />
           {/* <FilterTab /> */}
         </section>
