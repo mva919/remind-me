@@ -23,7 +23,7 @@ const CourseSection = () => {
       ref={parent}
       className={`${
         isExpanded ? "w-80" : "px-1"
-      } flex h-full flex-col overflow-scroll border-r border-r-slate-300 p-1 dark:border-r-slate-600`}
+      } flex h-full flex-col overflow-y-scroll border-r border-r-slate-300 p-1 dark:border-r-slate-600`}
     >
       {!isExpanded ? (
         <div>
