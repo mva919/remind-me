@@ -14,7 +14,7 @@ const Navbar = () => {
 
   return (
     <nav className="flex h-14 w-full flex-none items-center justify-between border-b border-slate-300 px-1 dark:border-slate-600 sm:px-4">
-      <h1 className="font-semibold dark:text-slate-100">Remind me.</h1>
+      <h1 className="font-semibold dark:text-slate-100">remind me.</h1>
       <div className="flex items-center justify-between gap-6">
         <ThemeToggle />
         <TooltipProvider delayDuration={100}>
