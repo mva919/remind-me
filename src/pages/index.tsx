@@ -1,13 +1,13 @@
 import { type NextPage } from "next";
 import PageLayout from "~/components/layout";
 import { SignedIn, SignedOut, useUser } from "@clerk/nextjs";
-import SignIn from "~/components/sign-in";
 import Spinner from "~/components/spinner";
 import Navbar from "~/components/navbar";
 import Footer from "~/components/footer";
 import useDeviceType from "~/hooks/useDeviceType";
 import TaskSection from "~/components/tasks-section";
 import CourseSection from "~/components/course-section";
+import Hero from "~/components/hero";
 
 const Home: NextPage = () => {
   const { isLoaded: userLoaded } = useUser();
@@ -35,7 +35,7 @@ const Home: NextPage = () => {
 
       <SignedOut>
         <div className="flex h-full items-center justify-center">
-          <SignIn />
+          <Hero />
         </div>
       </SignedOut>
     </PageLayout>

@@ -1,5 +1,5 @@
 import { useClerk } from "@clerk/nextjs";
-import { LogOut, Sun } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import {
   Tooltip,
@@ -7,33 +7,16 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "~/components/ui/tooltip";
-import { useTheme } from "next-themes";
+import ThemeToggle from "~/components/theme-toggle";
 
 const Navbar = () => {
   const { signOut } = useClerk();
-  const { theme, setTheme } = useTheme();
 
   return (
     <nav className="flex h-14 w-full flex-none items-center justify-between border-b border-slate-300 px-1 dark:border-slate-600 sm:px-4">
       <h1 className="font-semibold dark:text-slate-100">Remind me.</h1>
       <div className="flex items-center justify-between gap-6">
-        <TooltipProvider delayDuration={100}>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant="secondary"
-                onClick={() =>
-                  theme === "dark" ? setTheme("light") : setTheme("dark")
-                }
-              >
-                <Sun className="h-5 w-5 " />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Change theme</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        <ThemeToggle />
         <TooltipProvider delayDuration={100}>
           <Tooltip>
             <TooltipTrigger asChild>
