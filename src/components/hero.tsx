@@ -37,17 +37,31 @@ const Hero = () => {
           </SignUpButton>
         </div>
 
-        <Image
-          alt=""
-          src={`/showcase-${theme === "dark" ? "dark" : "light"}.png`}
-          width={
-            isSmallScreen
-              ? windowDimensions.width
-              : windowDimensions.width * 0.8
-          }
-          height={windowDimensions.height}
-          className="rounded border border-slate-200 shadow-2xl dark:border-slate-600 dark:shadow-slate-600"
-        />
+        {theme === "dark" || theme === "system" ? (
+          <Image
+            alt="remind me showcase in dark mode"
+            src="/showcase-dark.png"
+            width={
+              isSmallScreen
+                ? windowDimensions.width
+                : windowDimensions.width * 0.8
+            }
+            height={windowDimensions.height}
+            className="rounded border border-slate-200 shadow-2xl dark:border-slate-600 dark:shadow-slate-600"
+          />
+        ) : (
+          <Image
+            alt="remind me showcase in light mode"
+            src="/showcase-light.png"
+            width={
+              isSmallScreen
+                ? windowDimensions.width
+                : windowDimensions.width * 0.8
+            }
+            height={windowDimensions.height}
+            className="rounded border border-slate-200 shadow-2xl dark:border-slate-600 dark:shadow-slate-600"
+          />
+        )}
       </section>
     </div>
   );
