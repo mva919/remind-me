@@ -36,12 +36,18 @@ export const courseRouter = createTRPCRouter({
       const userId = ctx.userId;
       console.log("userId", userId);
 
-      const course = await ctx.prisma.course.delete({
+      await ctx.prisma.task.deleteMany({
+        where: {
+          courseId: {
+            equals: input,
+          },
+        },
+      });
+
+      await ctx.prisma.course.delete({
         where: {
           id: input,
         },
       });
-
-      return course;
     }),
 });
