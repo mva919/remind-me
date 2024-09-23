@@ -5,7 +5,6 @@ import SignIn from "~/components/sign-in";
 import Spinner from "~/components/spinner";
 import Navbar from "~/components/navbar";
 import Footer from "~/components/footer";
-import FilterTab from "~/components/filter-tab";
 import useDeviceType from "~/hooks/useDeviceType";
 import TaskSection from "~/components/tasks-section";
 import CourseSection from "~/components/course-section";
@@ -30,7 +29,6 @@ const Home: NextPage = () => {
         <section className="flex flex-auto">
           {!isSmallScreen && <CourseSection />}
           <TaskSection />
-          {/* <FilterTab /> */}
         </section>
         <Footer />
       </SignedIn>
