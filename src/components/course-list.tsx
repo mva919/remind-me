@@ -120,7 +120,7 @@ const CourseList = ({ setIsExpanded, isInModal }: CourseProps) => {
   };
 
   return (
-    <div className="relative h-full">
+    <div className="flex h-full flex-col">
       <div>
         <div className="flex items-center justify-between pb-2">
           <h1 className="pb-2 text-xl font-bold">Courses</h1>
@@ -182,7 +182,7 @@ const CourseList = ({ setIsExpanded, isInModal }: CourseProps) => {
         </div>
       )}
 
-      <div className="absolute bottom-0 w-full">
+      <div className="mt-1 w-full">
         {isEditing && (
           <Button
             variant="destructive"
