@@ -37,7 +37,7 @@ const Hero = () => {
           </SignUpButton>
         </div>
 
-        {theme === "dark" || theme === "system" ? (
+        {theme === "dark" ? (
           <Image
             alt="remind me showcase in dark mode"
             src="/showcase-dark.png"

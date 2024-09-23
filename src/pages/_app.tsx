@@ -24,7 +24,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
 
       <GlobalContextProvider>
         <CoursesContextProvider>
-          <ThemeProvider>
+          <ThemeProvider defaultTheme="dark" enableSystem={false}>
             <Component {...pageProps} />
             <Toaster />
           </ThemeProvider>
